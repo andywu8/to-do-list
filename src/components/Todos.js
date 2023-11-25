@@ -1,12 +1,38 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { addTodos } from "../redux/reducer";
 
-function Todos(){
+const mapStateToProps = (state) => {
+    return {
+        todos: state,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addTodo: (obj) => dispatch(addTodos(obj)),
+    };
+};
+function Todos(props){
+    console.log("props", props);
+
     const [todo, setTodo] = useState("");
+    function add(){
+        if (todo === ""){
+            alert("input is empty");
+        } else {
+            props.addTodo({
+                id:  Math.floor(Math.random() * 1000),
+                item: todo,
+                completed: false,
+            });
+            setTodo("");
+        }
+    }
     return (
         <div className="addTodos">
             <input type="text" onChange={e=>setTodo(e.target.value)} value={todo} />
-            <button>Add</button>
+            <button onClick={add}>Add</button>
         </div>
     )
 }
