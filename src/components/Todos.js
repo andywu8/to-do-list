@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
-
-export default function Todos(){
+function Todos(){
     const [todo, setTodo] = useState("");
     return (
         <div className="addTodos">
@@ -10,3 +10,5 @@ export default function Todos(){
         </div>
     )
 }
+
+export default connect(null, null)(Todos);
