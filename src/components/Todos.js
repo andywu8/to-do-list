@@ -33,6 +33,11 @@ function Todos(props){
         <div className="addTodos">
             <input type="text" onChange={e=>setTodo(e.target.value)} value={todo} />
             <button onClick={add}>Add</button>
+            <ul>
+            {props.todos.length > 0 && props.todos.map((item) => {
+                return <li key={item.id}>{item.item}</li>;
+            })}
+        </ul>
         </div>
     )
 }
